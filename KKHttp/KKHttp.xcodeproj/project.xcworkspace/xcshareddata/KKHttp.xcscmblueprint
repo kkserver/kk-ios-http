@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E63A3219247E4990DD91A0DEE90CEC54951C87C4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E63A3219247E4990DD91A0DEE90CEC54951C87C4" : 9223372036854775807,
+    "DF22ED11322278A87E78D8C604D53222D5B31951" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0E6D12AF-1CC1-4E38-9F6D-2CFE0C54BAD3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E63A3219247E4990DD91A0DEE90CEC54951C87C4" : "kk-ios-http\/",
+    "DF22ED11322278A87E78D8C604D53222D5B31951" : "kk-ios-crypto\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "KKHttp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "KKHttp\/KKHttp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kkserver\/kk-ios-crypto.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DF22ED11322278A87E78D8C604D53222D5B31951"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kkserver\/kk-ios-http.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E63A3219247E4990DD91A0DEE90CEC54951C87C4"
+    }
+  ]
+}
