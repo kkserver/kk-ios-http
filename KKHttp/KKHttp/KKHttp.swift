@@ -91,10 +91,10 @@ internal class KKHttpResponse : NSObject {
                 
                 try? fm.createDirectory(atPath: (_tmppath as NSString).deletingLastPathComponent
                     , withIntermediateDirectories: true, attributes: nil)
-                
-                let fd = FileHandle.init(forWritingAtPath: _tmppath)
+            
+                let fd = fopen(_tmppath,"wb")
                 if( fd != nil) {
-                    fd!.closeFile()
+                    fclose(fd)
                 }
             }
             
@@ -107,15 +107,15 @@ internal class KKHttpResponse : NSObject {
         
         if key != nil {
             
-            let fd = FileHandle.init(forUpdatingAtPath: _tmppath)
+            let fd = fopen(_tmppath,"ab")
             
             if( fd != nil) {
                 
-                fd!.seekToEndOfFile()
+                data.withUnsafeBytes({ (bytes:UnsafePointer<UInt8>) -> Void in
+                    fwrite(bytes, 1, data.count, fd)
+                })
                 
-                fd!.write(data)
-                
-                fd!.closeFile()
+                fclose(fd)
             }
             
         } else {
@@ -143,28 +143,28 @@ internal class KKHttpResponse : NSObject {
             let fm = FileManager.default
             
             do {
-                try fm.removeItem(atPath: _path);
+                try? fm.removeItem(atPath: _path);
                 try fm.moveItem(atPath: _tmppath, toPath: _path)
             }
             catch {
                 _error = KKHttpOptionsError.FILE
             }
             
-            if options.type == .Uri {
+            if options.type == KKHttpOptions.TypeUri {
                 _body = _path
             }
-            else if(options.type == .Image) {
+            else if(options.type == KKHttpOptions.TypeImage) {
                 _body = UIImage.init(named: _path)
             }
             
-        } else if(options.type == .Json) {
+        } else if(options.type == KKHttpOptions.TypeJson) {
             do {
                 _body = try JSONSerialization.jsonObject(with: _data!, options: JSONSerialization.ReadingOptions.mutableLeaves)
             }
             catch{
                 _error = KKHttpOptionsError.JSON
             }
-        } else if(options.type == .Text) {
+        } else if(options.type == KKHttpOptions.TypeText) {
             _body = String.init(data: _data!, encoding: _encoding)
         } else {
             _body = _data
@@ -174,7 +174,7 @@ internal class KKHttpResponse : NSObject {
     
     public var background:Bool {
         get {
-            return key != nil
+            return key != nil || options.type == KKHttpOptions.TypeJson
         }
     }
     
@@ -188,7 +188,7 @@ internal class KKHttpResponse : NSObject {
     private var _error:Error?
     
     public func body() -> (Any?,Error?) {
-        return (_data,_error)
+        return (_body,_error)
     }
     
 }
@@ -267,6 +267,25 @@ public class KKHttp : NSObject,URLSessionDataDelegate {
         sessionTask.resume()
         
         return v
+    }
+    
+    public func get(_ url:String,_ data:[String:String]?,_ type:String,_ onload:KKHttpOptions.OnLoad?,_ onfail:KKHttpOptions.OnFail?,_ weakObject:AnyObject?) throws -> KKHttpTask {
+        let options = KKHttpOptions.init(url:url)
+        options.data = data
+        options.type = type
+        options.onLoad = onload
+        options.onFail = onfail
+        return try send(options,weakObject)
+    }
+    
+    public func post(_ url:String,_ data:Any?,_ type:String,_ onload:KKHttpOptions.OnLoad?,_ onfail:KKHttpOptions.OnFail?,_ weakObject:AnyObject?) throws -> KKHttpTask {
+        let options = KKHttpOptions.init(url:url)
+        options.method = KKHttpOptions.POST
+        options.data = data
+        options.type = type
+        options.onLoad = onload
+        options.onFail = onfail
+        return try send(options,weakObject)
     }
     
     public func cancel(_ weakObject:AnyObject? ) -> Void {
@@ -374,7 +393,7 @@ public class KKHttp : NSObject,URLSessionDataDelegate {
                 
                 let v = task as! KKHttpTask
                 
-                v.options.onResponse?(response as! HTTPURLResponse)
+                v.options.onResponse?(response as! HTTPURLResponse,v.weakObject)
                 
             }
             
@@ -415,7 +434,7 @@ public class KKHttp : NSObject,URLSessionDataDelegate {
                     
                     let v = task as! KKHttpTask
                     
-                    v.options.onProcess?(r!.value,r!.maxValue)
+                    v.options.onProcess?(r!.value,r!.maxValue,v.weakObject)
                     
                 }
                 
@@ -436,7 +455,7 @@ public class KKHttp : NSObject,URLSessionDataDelegate {
                 
                 let v = task as! KKHttpTask
                 
-                v.options.onProcess?(totalBytesSent,totalBytesExpectedToSend)
+                v.options.onProcess?(totalBytesSent,totalBytesExpectedToSend,v.weakObject)
                 
             }
             
@@ -463,9 +482,9 @@ public class KKHttp : NSObject,URLSessionDataDelegate {
                         
                         if error == nil {
                             let (data,err) = r!.body()
-                            v.options.onLoad?(data,err)
+                            v.options.onLoad?(data,err,v.weakObject)
                         } else {
-                            v.options.onFail?(error)
+                            v.options.onFail?(error,v.weakObject)
                         }
                         
                         

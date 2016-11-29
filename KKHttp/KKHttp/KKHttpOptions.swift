@@ -9,14 +9,6 @@
 import Foundation
 import KKCrypto
 
-public enum KKHttpOptionsType {
-    case Text
-    case Json
-    case Data
-    case Uri
-    case Image
-}
-
 public enum KKHttpOptionsError : Error {
     case URL
     case JSON
@@ -25,19 +17,26 @@ public enum KKHttpOptionsError : Error {
 
 public class KKHttpOptions : NSObject {
     
-    public typealias OnLoad = (_ data:Any?,_ error:Error?) -> Void
-    public typealias OnFail = (_ error:Error?) ->Void
-    public typealias OnResponse = (_ response:HTTPURLResponse) -> Void
-    public typealias OnProcess = (_ value:Int64,_ maxValue:Int64) -> Void
+    public typealias OnLoad = (_ data:Any?,_ error:Error?,_ weakObject:AnyObject?) -> Void
+    public typealias OnFail = (_ error:Error?,_ weakObject:AnyObject?) ->Void
+    public typealias OnResponse = (_ response:HTTPURLResponse,_ weakObject:AnyObject?) -> Void
+    public typealias OnProcess = (_ value:Int64,_ maxValue:Int64,_ weakObject:AnyObject?) -> Void
     
     public static let GET = "GET"
     public static let POST = "POST"
+    
+    public static let TypeText = "text"
+    public static let TypeJson = "json"
+    public static let TypeData = "data"
+    public static let TypeUri = "uri"
+    public static let TypeImage = "image"
     
     public var url:String
     public var method:String = GET
     public var data:Any?
     public var headers:[String:String] = [:]
-    public var type:KKHttpOptionsType = .Text
+    public var type:String = TypeText
+    public var timeout:TimeInterval = 30
     
     public var onLoad:OnLoad?
     public var onFail:OnFail?
@@ -73,7 +72,7 @@ public class KKHttpOptions : NSObject {
             
             if(_absoluteUrl == nil) {
                 
-                if (type == .Uri || type == .Image || method == KKHttpOptions.GET)
+                if (type == KKHttpOptions.TypeUri || type == KKHttpOptions.TypeImage || method == KKHttpOptions.GET)
                     && data != nil && data is Dictionary<String,Any> {
                     var query:String=""
                     var i = 0
@@ -107,7 +106,7 @@ public class KKHttpOptions : NSObject {
     public var key:String? {
         get {
             if(_key == nil) {
-                if type == .Uri || type == .Image {
+                if type == KKHttpOptions.TypeUri || type == KKHttpOptions.TypeImage {
                     _key = KKHttpOptions.cacheKey(url: absoluteUrl)
                 }
             }
@@ -121,7 +120,7 @@ public class KKHttpOptions : NSObject {
         
         if u != nil {
             
-            var req = URLRequest.init(url: u!)
+            var req = URLRequest.init(url: u!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: timeout)
             
             req.httpMethod = method
             
@@ -168,7 +167,7 @@ public class KKHttpOptions : NSObject {
                 req.setValue(value,forHTTPHeaderField:key)
             }
             
-            if type == .Uri || type == .Image {
+            if type == KKHttpOptions.TypeUri || type == KKHttpOptions.TypeImage {
                 
                 let (path,_,b) = KKHttpOptions.cacheTmpPath(url:absoluteUrl)
                 let fm = FileManager.default
@@ -177,7 +176,7 @@ public class KKHttpOptions : NSObject {
                     
                     let attrs = try fm.attributesOfItem(atPath: path)
                     
-                    req.setValue(String.init(format: "%llu-", attrs[FileAttributeKey.size] as! UInt64), forHTTPHeaderField: "Range")
+                    req.setValue(String.init(format: "%llu-", (attrs[FileAttributeKey.size] as! NSNumber).uint64Value), forHTTPHeaderField: "Range")
                     
                 }
             }
