@@ -15,15 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        _ = try? KKHttp.main.get("http://www.baidu.com/img/baidu_jgylogo3.gif", nil, KKHttpOptions.TypeImage, { (data:Any?, error:Error?) in
-            
-                print(data)
-            
-            }, { (error:Error?) in
-                
-                print(error)
-                
-            }, self)
+        
         
         
     }
