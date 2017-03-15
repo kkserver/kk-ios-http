@@ -256,7 +256,7 @@ public class KKHttp : NSObject,URLSessionDataDelegate {
         
         if tasks == nil {
             tasks = NSMutableArray.init(capacity: 4)
-            _tasksWithIdentity.setObject(tasks, forKey: identity)
+            _tasksWithIdentity.setObject(tasks!, forKey: identity)
         }
         
         tasks!.add(v)
