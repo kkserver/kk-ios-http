@@ -159,7 +159,7 @@ internal class KKHttpResponse : NSObject {
             
         } else if(options.type == KKHttpOptions.TypeJson) {
             do {
-                _body = try JSONSerialization.jsonObject(with: _data!, options: JSONSerialization.ReadingOptions.mutableLeaves)
+                _body = try JSONSerialization.jsonObject(with: _data!, options: JSONSerialization.ReadingOptions.mutableContainers)
             }
             catch{
                 _error = KKHttpOptionsError.JSON
