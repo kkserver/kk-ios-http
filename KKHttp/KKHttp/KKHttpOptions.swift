@@ -127,7 +127,7 @@ public class KKHttpOptions : NSObject {
             if method == "POST" {
                 
                 if data != nil {
-                    
+                
                     if data is Dictionary<String,Any> {
                         
                         let body = KKHttpBody.init()
@@ -180,6 +180,8 @@ public class KKHttpOptions : NSObject {
                     
                 }
             }
+            
+            print("[KK]","[KKHttp]", req);
             
             return req
             
