@@ -82,7 +82,7 @@ public class KKHttpOptions : NSObject {
                         }
                         query.append(key)
                         query.append("=")
-                        query.append((value as! String).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+                        query.append(KKHttpOptions.stringValue(value).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
                         i = i + 1
                     }
                     if url.hasSuffix("?") {
@@ -144,7 +144,7 @@ public class KKHttpOptions : NSObject {
                                     body.add(key: key, data:try Data.init(contentsOf: URL.init(fileURLWithPath: path)) , type: type as! String, name: name as! String)
                                 }
                             } else {
-                                body.add(key: key, value: value as! String)
+                                body.add(key: key, value: KKHttpOptions.stringValue(value))
                             }
                             
                         }
@@ -209,4 +209,41 @@ public class KKHttpOptions : NSObject {
         return (path,key,fm.fileExists(atPath:path))
     }
     
+    public static func stringValue(_ object:Any?) -> String {
+        
+        if(object == nil) {
+            return "";
+        }
+        
+        if(object is String || object is NSString) {
+            return object as! String;
+        }
+        
+        if(object is Int) {
+            return String.init(object as! Int);
+        }
+        
+        if(object is Int64) {
+            return String.init(object as! Int64);
+        }
+        
+        if(object is Float) {
+            return String.init(object as! Float);
+        }
+        
+        if(object is Double) {
+            return String.init(object as! Double);
+        }
+        
+        if(object is NSNumber) {
+            return (object as! NSNumber).stringValue;
+        }
+        
+        if(object is NSObject) {
+            return (object as! NSObject).description;
+        }
+        
+        return ""
+    }
+
 }
