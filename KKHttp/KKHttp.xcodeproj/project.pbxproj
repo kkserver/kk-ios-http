@@ -13,7 +13,6 @@
 		AC37BBFF1DED374C00AA0B68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC37BBFE1DED374C00AA0B68 /* Assets.xcassets */; };
 		AC37BC021DED374C00AA0B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC37BC001DED374C00AA0B68 /* LaunchScreen.storyboard */; };
 		AC37BC0B1DED3C5200AA0B68 /* KKHttp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACCDE5691DEBD8D500E6C255 /* KKHttp.framework */; };
-		AC37BC0C1DED3C5500AA0B68 /* KKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACCDE5B91DEBE14C00E6C255 /* KKCrypto.framework */; };
 		ACCDE56E1DEBD8D500E6C255 /* KKHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = ACCDE56C1DEBD8D500E6C255 /* KKHttp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACCDE5751DEBD90500E6C255 /* KKHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDE5741DEBD90500E6C255 /* KKHttp.swift */; };
 		ACCDE5BD1DEBE2F100E6C255 /* KKHttpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDE5BC1DEBE2F100E6C255 /* KKHttpOptions.swift */; };
@@ -27,27 +26,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = ACCDE5681DEBD8D500E6C255;
 			remoteInfo = KKHttp;
-		};
-		AC37BC091DED3BDB00AA0B68 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACCDE5B41DEBE14C00E6C255 /* KKCrypto.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = ACCDE5A01DEBE0D700E6C255;
-			remoteInfo = KKCrypto;
-		};
-		ACCDE5B81DEBE14C00E6C255 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACCDE5B41DEBE14C00E6C255 /* KKCrypto.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = ACCDE5A11DEBE0D700E6C255;
-			remoteInfo = KKCrypto;
-		};
-		ACCDE5BA1DEBE15400E6C255 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACCDE5B41DEBE14C00E6C255 /* KKCrypto.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = ACCDE5A01DEBE0D700E6C255;
-			remoteInfo = KKCrypto;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -63,7 +41,6 @@
 		ACCDE56C1DEBD8D500E6C255 /* KKHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KKHttp.h; sourceTree = "<group>"; };
 		ACCDE56D1DEBD8D500E6C255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACCDE5741DEBD90500E6C255 /* KKHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKHttp.swift; sourceTree = "<group>"; };
-		ACCDE5B41DEBE14C00E6C255 /* KKCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KKCrypto.xcodeproj; path = "../../kk-ios-crypto/KKCrypto/KKCrypto.xcodeproj"; sourceTree = "<group>"; };
 		ACCDE5BC1DEBE2F100E6C255 /* KKHttpOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKHttpOptions.swift; sourceTree = "<group>"; };
 		ACCDE5BE1DEBE37C00E6C255 /* KKHttpBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKHttpBody.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,7 +50,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC37BC0C1DED3C5500AA0B68 /* KKCrypto.framework in Frameworks */,
 				AC37BC0B1DED3C5200AA0B68 /* KKHttp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,7 +80,6 @@
 		ACCDE55F1DEBD8D500E6C255 = {
 			isa = PBXGroup;
 			children = (
-				ACCDE5B41DEBE14C00E6C255 /* KKCrypto.xcodeproj */,
 				ACCDE56B1DEBD8D500E6C255 /* KKHttp */,
 				AC37BBF61DED374C00AA0B68 /* KKHttpDemo */,
 				ACCDE56A1DEBD8D500E6C255 /* Products */,
@@ -132,14 +107,6 @@
 			path = KKHttp;
 			sourceTree = "<group>";
 		};
-		ACCDE5B51DEBE14C00E6C255 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ACCDE5B91DEBE14C00E6C255 /* KKCrypto.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -165,7 +132,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				AC37BC0A1DED3BDB00AA0B68 /* PBXTargetDependency */,
 				AC37BC081DED375A00AA0B68 /* PBXTargetDependency */,
 			);
 			name = KKHttpDemo;
@@ -185,7 +151,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				ACCDE5BB1DEBE15400E6C255 /* PBXTargetDependency */,
 			);
 			name = KKHttp;
 			productName = KKHttp;
@@ -226,12 +191,6 @@
 			mainGroup = ACCDE55F1DEBD8D500E6C255;
 			productRefGroup = ACCDE56A1DEBD8D500E6C255 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = ACCDE5B51DEBE14C00E6C255 /* Products */;
-					ProjectRef = ACCDE5B41DEBE14C00E6C255 /* KKCrypto.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				ACCDE5681DEBD8D500E6C255 /* KKHttp */,
@@ -239,16 +198,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		ACCDE5B91DEBE14C00E6C255 /* KKCrypto.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KKCrypto.framework;
-			remoteRef = ACCDE5B81DEBE14C00E6C255 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AC37BBF31DED374C00AA0B68 /* Resources */ = {
@@ -297,16 +246,6 @@
 			isa = PBXTargetDependency;
 			target = ACCDE5681DEBD8D500E6C255 /* KKHttp */;
 			targetProxy = AC37BC071DED375A00AA0B68 /* PBXContainerItemProxy */;
-		};
-		AC37BC0A1DED3BDB00AA0B68 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = KKCrypto;
-			targetProxy = AC37BC091DED3BDB00AA0B68 /* PBXContainerItemProxy */;
-		};
-		ACCDE5BB1DEBE15400E6C255 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = KKCrypto;
-			targetProxy = ACCDE5BA1DEBE15400E6C255 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
