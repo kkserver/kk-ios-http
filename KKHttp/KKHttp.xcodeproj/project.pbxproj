@@ -13,6 +13,7 @@
 		AC37BBFF1DED374C00AA0B68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC37BBFE1DED374C00AA0B68 /* Assets.xcassets */; };
 		AC37BC021DED374C00AA0B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC37BC001DED374C00AA0B68 /* LaunchScreen.storyboard */; };
 		AC37BC0B1DED3C5200AA0B68 /* KKHttp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACCDE5691DEBD8D500E6C255 /* KKHttp.framework */; };
+		AC3D691A1EAF50040068C11E /* KKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3D69191EAF50040068C11E /* KKCrypto.framework */; };
 		ACCDE56E1DEBD8D500E6C255 /* KKHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = ACCDE56C1DEBD8D500E6C255 /* KKHttp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACCDE5751DEBD90500E6C255 /* KKHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDE5741DEBD90500E6C255 /* KKHttp.swift */; };
 		ACCDE5BD1DEBE2F100E6C255 /* KKHttpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDE5BC1DEBE2F100E6C255 /* KKHttpOptions.swift */; };
@@ -37,6 +38,7 @@
 		AC37BBFE1DED374C00AA0B68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC37BC011DED374C00AA0B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC37BC031DED374C00AA0B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC3D69191EAF50040068C11E /* KKCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KKCrypto.framework; path = ../../../../../../../Frameworks/KKCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACCDE5691DEBD8D500E6C255 /* KKHttp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KKHttp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACCDE56C1DEBD8D500E6C255 /* KKHttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KKHttp.h; sourceTree = "<group>"; };
 		ACCDE56D1DEBD8D500E6C255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC3D691A1EAF50040068C11E /* KKCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,12 +80,21 @@
 			path = KKHttpDemo;
 			sourceTree = "<group>";
 		};
+		AC3D69181EAF50040068C11E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC3D69191EAF50040068C11E /* KKCrypto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ACCDE55F1DEBD8D500E6C255 = {
 			isa = PBXGroup;
 			children = (
 				ACCDE56B1DEBD8D500E6C255 /* KKHttp */,
 				AC37BBF61DED374C00AA0B68 /* KKHttpDemo */,
 				ACCDE56A1DEBD8D500E6C255 /* Products */,
+				AC3D69181EAF50040068C11E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
